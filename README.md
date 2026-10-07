@@ -2,7 +2,7 @@
 
 A working supply-planning portfolio case: one CDC, three stores, 24 footwear SKUs, supplier lead times, minimum quantities, transfers, and a monthly purchasing limit. The system produces **draft** buy, transfer, defer, and review actions. Its public demonstration uses deterministic synthetic data. No simulated result is claimed as a company outcome.
 
-[Open the case study](docs/index.html) · Run the [interactive app](app.py) locally · Inspect [decision rules](docs/method.md)
+[Open the public case study](https://prottoymkp.github.io/replenishment-decisions/) · [Try the interactive demo](https://replenishment-decisions-mkp.streamlit.app/) · Inspect [decision rules](docs/method.md)
 
 ## What a buyer can decide
 
@@ -58,4 +58,4 @@ With synthetic data already loaded and the forecaster prepared, one local warm s
 
 ## Deployment
 
-For a public demonstration, publish this standalone repository on GitHub, host `docs/` through GitHub Pages, then deploy `app.py` on Streamlit Community Cloud with Python 3.12 and the root `requirements.txt`. The case-study links are configured in `docs/site-config.json`. CI runs lint, tests, and the reproducible demo. No external credentials or AI model are used by the app.
+The [public case study](https://prottoymkp.github.io/replenishment-decisions/) is hosted from `docs/` through GitHub Pages. The [demo](https://replenishment-decisions-mkp.streamlit.app/) runs `app.py` on Streamlit Community Cloud with Python 3.12 and the root `requirements.txt`. The case-study links are configured in `docs/site-config.json`. CI runs lint, tests, and the reproducible demo. No external credentials or AI model are used by the app.
