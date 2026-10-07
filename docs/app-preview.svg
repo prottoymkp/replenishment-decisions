@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Decision brief interface schematic</title>
+  <desc id="desc">Light operations workspace with purchase spending, available budget, a buyer queue, and deferred-purchase exposure.</desc>
+  <defs>
+    <style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172721}.small{font-size:14px;fill:#53645d}.label{font-size:17px;fill:#53645d}.value{font-size:34px;font-weight:600}.title{font-size:36px;font-weight:650}.heading{font-size:23px;font-weight:650}.line{stroke:#d7ded8;stroke-width:1}.green{fill:#165a54}</style>
+  </defs>
+  <rect width="1280" height="720" fill="#faf9f6"/>
+  <rect width="280" height="720" fill="#f0f2ef"/>
+  <line x1="280" y1="0" x2="280" y2="720" class="line"/>
+  <text x="28" y="51" font-size="18" font-weight="650">Review controls</text>
+  <text x="28" y="98" class="label">Data source</text>
+  <circle cx="37" cy="131" r="8" fill="#165a54"/><text x="57" y="137" class="small">Prepared demonstration</text>
+  <circle cx="37" cy="166" r="8" fill="none" stroke="#aab8ae" stroke-width="2"/><text x="57" y="172" class="small">Use your own data</text>
+  <line x1="28" y1="204" x2="252" y2="204" class="line"/>
+  <text x="28" y="239" class="label">Purchasing budget</text><text x="28" y="266" class="small">$50,000 available now</text>
+  <line x1="30" y1="302" x2="249" y2="302" stroke="#cad6cd" stroke-width="5"/><line x1="30" y1="302" x2="143" y2="302" stroke="#165a54" stroke-width="5"/><circle cx="143" cy="302" r="8" fill="#165a54"/>
+  <text x="28" y="357" class="label">Supplier lead time</text><text x="28" y="384" class="small">No adjustment</text>
+  <line x1="30" y1="420" x2="249" y2="420" stroke="#cad6cd" stroke-width="5"/><line x1="30" y1="420" x2="105" y2="420" stroke="#165a54" stroke-width="5"/><circle cx="105" cy="420" r="8" fill="#165a54"/>
+  <text x="28" y="475" class="label">Service target</text><text x="28" y="502" class="small">95%</text>
+  <line x1="30" y1="538" x2="249" y2="538" stroke="#cad6cd" stroke-width="5"/><line x1="30" y1="538" x2="210" y2="538" stroke="#165a54" stroke-width="5"/><circle cx="210" cy="538" r="8" fill="#165a54"/>
+  <text x="28" y="609" class="label">Review date</text><rect x="28" y="625" width="224" height="46" rx="4" fill="#fff" stroke="#d7ded8"/><text x="42" y="654" class="small">18 September 2026</text>
+  <text x="322" y="62" class="title">Replenishment decisions</text>
+  <text x="322" y="94" class="small">Decide what to buy, transfer, or defer across one distribution center and three stores.</text>
+  <text x="322" y="123" class="small">Synthetic footwear retailer · buyer files are drafts</text>
+  <text x="322" y="171" font-size="16" font-weight="650" class="green">Decision brief</text><text x="468" y="171" font-size="16">Buyer actions</text><text x="602" y="171" font-size="16">Compare scenarios</text><text x="792" y="171" font-size="16">Data and method</text>
+  <line x1="322" y1="184" x2="1240" y2="184" class="line"/><line x1="322" y1="184" x2="438" y2="184" stroke="#165a54" stroke-width="3"/>
+  <text x="322" y="231" class="heading">Today's allocation</text>
+  <text x="322" y="273" class="label">Recommended spend</text><text x="322" y="320" class="value">$49,728</text>
+  <text x="704" y="273" class="label">Available budget</text><text x="704" y="320" class="value">$50,000</text>
+  <text x="1012" y="273" class="label">Budget remaining</text><text x="1012" y="320" class="value">$272</text>
+  <rect x="322" y="349" width="918" height="9" fill="#dfe6e0"/><rect x="322" y="349" width="913" height="9" fill="#165a54"/>
+  <text x="322" y="385" class="small">Share of available funds committed to new supplier purchases. Unspent budget is not savings.</text>
+  <line x1="322" y1="414" x2="1240" y2="414" class="line"/>
+  <text x="322" y="461" class="heading">Buyer queue</text><text x="1014" y="461" class="heading">Exposure</text>
+  <rect x="322" y="484" width="646" height="69" rx="4" fill="#fff" stroke="#d7ded8"/>
+  <text x="341" y="511" font-size="16" font-weight="650">BUY · FW-019 → CDC</text><text x="341" y="536" class="small">276 units · supplier minimum and pack size applied</text>
+  <rect x="322" y="566" width="646" height="69" rx="4" fill="#fff" stroke="#d7ded8"/>
+  <text x="341" y="593" font-size="16" font-weight="650">TRANSFER · FW-013 → STORE-1</text><text x="341" y="618" class="small">6 units · move before projected shortage</text>
+  <text x="1014" y="508" class="label">Purchase lines deferred</text><text x="1014" y="560" class="value">1</text>
+  <text x="1014" y="595" class="small">Deferred purchases</text><text x="1014" y="617" class="small">remain service risks.</text>
+</svg>

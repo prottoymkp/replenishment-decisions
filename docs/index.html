@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A working supply-planning portfolio case with buy, transfer, and defer decisions under supplier lead times and a cash limit.">
+  <title>Replenishment decisions · Supply planning portfolio</title>
+  <style>
+    :root {--ink:#172721;--green:#165a54;--paper:#faf9f6;--white:#fff;--muted:#53645d;--line:#d7ded8;--soft:#f0f2ef;--orange:#8d4e29}
+    * {box-sizing:border-box} html {scroll-behavior:smooth}
+    body {margin:0;background:var(--paper);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;line-height:1.58}
+    a {color:var(--green)} a:focus-visible {outline:3px solid var(--orange);outline-offset:4px}
+    .wrap {max-width:1140px;margin:auto;padding:0 28px}
+    header {border-bottom:1px solid var(--line);background:var(--paper)}
+    nav {min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    nav strong {font-size:.94rem;letter-spacing:.01em} nav .links {display:flex;gap:24px}
+    nav a {font-size:.9rem;text-decoration:none;color:var(--muted)} nav a:hover {color:var(--green);text-decoration:underline}
+    h1,h2 {font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.035em}
+    h1 {font-size:clamp(2.8rem,5.6vw,5rem);line-height:1.05;max-width:670px;margin:0 0 24px}
+    h2 {font-size:clamp(2rem,3.2vw,2.8rem);line-height:1.17;margin:0 0 16px}
+    h3 {font-size:1.07rem;margin:0 0 8px;line-height:1.35}
+    p {margin-top:0}
+    .hero {padding:82px 0 70px;border-bottom:1px solid var(--line)}
+    .hero-grid {display:grid;grid-template-columns:minmax(0,1.45fr) minmax(305px,.8fr);gap:70px;align-items:start}
+    .hero-copy p {font-size:1.11rem;max-width:630px;color:var(--muted);margin-bottom:27px}
+    .actions {display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .button {display:inline-block;padding:11px 16px;border:1px solid var(--green);border-radius:3px;font-size:.92rem;font-weight:650;text-decoration:none;color:var(--green)}
+    .button.primary {background:var(--green);color:#fff} .button:hover {text-decoration:underline}
+    .button[aria-disabled="true"] {opacity:.55;pointer-events:none}
+    .case-note {font-size:.83rem;color:var(--muted);margin-top:18px}
+    .allocation {border-top:1px solid var(--line);padding-top:18px}
+    .allocation .lead {font-size:.89rem;color:var(--muted);margin-bottom:8px}
+    .allocation .spend {font-size:clamp(2.6rem,4vw,4rem);font-weight:650;line-height:1.1;letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+    .allocation .of {font-size:.93rem;color:var(--muted);margin:7px 0 17px}
+    .track {height:9px;background:#dfe6e0;overflow:hidden} .fill {height:100%;background:var(--green)}
+    .ledger {list-style:none;padding:0;margin:17px 0 0;border-top:1px solid var(--line)}
+    .ledger li {display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding:10px 0;font-size:.9rem}
+    .ledger strong {font-variant-numeric:tabular-nums} .ledger .exposure {color:var(--orange)}
+    section {padding:82px 0 0} .section-intro {font-size:1.04rem;max-width:720px;color:var(--muted);margin-bottom:32px}
+    .decision-grid {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px}
+    .steps {border-top:1px solid var(--line)} .step {display:grid;grid-template-columns:38px 1fr;gap:18px;border-bottom:1px solid var(--line);padding:21px 0}
+    .step .num {font-size:.82rem;font-weight:700;color:var(--green);padding-top:3px} .step p {color:var(--muted);margin:0}
+    .proof {border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px 0;margin-top:3px}
+    .proof .figure {font-family:Georgia,"Times New Roman",serif;font-size:3rem;line-height:1.1;letter-spacing:-.04em;color:var(--green);margin-bottom:8px}
+    .proof p {color:var(--muted);margin:0}
+    .evidence {display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+    .comparison {background:var(--white);border:1px solid var(--line);padding:28px}
+    .barrow {margin:23px 0 0} .barrow .top {display:flex;justify-content:space-between;gap:10px;font-size:.9rem;margin-bottom:8px}
+    .barrow .top strong {font-variant-numeric:tabular-nums} .barrow .fill.baseline {background:#8c9690}
+    .comparison small {display:block;color:var(--muted);margin-top:20px}
+    .evidence-detail {border-top:1px solid var(--line);padding-top:18px;margin-top:24px;font-size:.95rem}
+    figure {margin:0} .preview {display:block;width:100%;border:1px solid var(--line);background:var(--white)}
+    figcaption {color:var(--muted);font-size:.85rem;margin-top:10px}
+    .tool-head {display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:25px}
+    .tool-head p {color:var(--muted);max-width:680px;margin:0}
+    .method {background:var(--soft);padding:74px 0;margin-top:82px;border-top:1px solid var(--line)}
+    .method-grid {display:grid;grid-template-columns:1fr 1fr;gap:70px} .method p {color:var(--muted)}
+    .stack {border-top:1px solid #cbd6cd;padding-top:14px;margin-top:25px;font-size:.88rem;color:var(--muted)}
+    footer {padding:30px 0;color:var(--muted);font-size:.84rem}
+    @media(max-width:800px) {.hero-grid,.decision-grid,.evidence,.method-grid {grid-template-columns:1fr;gap:32px}.hero {padding:55px 0}.allocation {max-width:520px}.tool-head {display:block}.tool-head .button {margin-top:18px}}
+    @media(max-width:600px) {.wrap {padding:0 20px}nav {min-height:60px}nav .links {display:none}section {padding-top:60px}h1 {font-size:2.75rem}.comparison {padding:20px}.hero-grid {gap:42px}}
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><nav><strong>Replenishment decisions</strong><div class="links"><a href="#decision">The decision</a><a href="#evidence">Evidence</a><a href="#tool">Working tool</a><a href="#method">Method</a></div></nav></div></header>
+  <main>
+    <div class="hero"><div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Where should the next dollar of stock go?</h1>
+        <p>A buyer has a $50,000 purchasing limit, long supplier lead times, and competing store shortages. This system recommends what to buy, move from the distribution center, or defer—and makes the trade-off inspectable.</p>
+        <div class="actions"><a id="demo-link" class="button primary" href="#tool">Open working demo</a><a id="repo-link" class="button" href="#method">Inspect the code</a></div>
+        <div id="link-status" class="case-note">Synthetic case · reproducible calculations · buyer actions are drafts</div>
+      </div>
+      <aside class="allocation" aria-label="Prepared demonstration decision">
+        <div class="lead">Prepared decision · 18 September 2026</div>
+        <div class="spend">$49,728</div>
+        <div class="of">recommended supplier spend / $50,000 available</div>
+        <div class="track" role="img" aria-label="99.456 percent of the purchasing budget recommended"><div class="fill" style="width:99.456%"></div></div>
+        <ul class="ledger"><li><span>Supplier purchases</span><strong>11 lines</strong></li><li><span>CDC → store transfers</span><strong>3 lines</strong></li><li><span class="exposure">Purchase deferred</span><strong class="exposure">1 line</strong></li><li><span>Budget remaining</span><strong>$272</strong></li></ul>
+      </aside>
+    </div></div>
+    <section id="decision" class="wrap"><div class="decision-grid"><div>
+      <h2>Make the allocation, then show the reason.</h2>
+      <p class="section-intro">The buyer sees a short action list grounded in stock records, forecast evidence, supplier rules, and cash. A recommendation shows quantity, arrival, cost, and the reason it won or lost funding.</p>
+      <div class="proof"><div class="figure">Buy · Transfer · Defer</div><p>Three distinct decisions from one network view. Deferrals remain visible as shortage exposure, not accounting savings.</p></div>
+    </div><div class="steps">
+      <div class="step"><div class="num">01</div><div><h3>Reconcile the stock</h3><p>Check daily snapshots against receipts, dispatches, and sales. Separate stockout-censored days from true zero demand.</p></div></div>
+      <div class="step"><div class="num">02</div><div><h3>Allocate scarce supply</h3><p>Move available CDC stock to urgent stores, then buy valid supplier packs within the remaining cash limit.</p></div></div>
+      <div class="step"><div class="num">03</div><div><h3>Measure the consequence</h3><p>Replay the policy against a days-of-supply baseline and report service, lost units, purchase commitments, and inventory value.</p></div></div>
+    </div></div></section>
+    <section id="evidence" class="wrap"><div class="evidence"><div>
+      <h2>A better service result costs a little more.</h2>
+      <p class="section-intro">With a $25,000 monthly cap in the six-month synthetic replay, the proposed policy serves more demand. The base and supplier-delay scenarios tie the baseline.</p>
+      <p class="evidence-detail"><strong>142 fewer lost units</strong>, with $216 more purchase commitments, $140.25 more estimated transfer cost, and $151.39 higher average inventory value over 183 days.</p>
+    </div><div class="comparison" role="img" aria-label="Tight-budget simulated unit fill rate: days-of-supply baseline 78.27 percent, proposed policy 79.20 percent">
+      <h3>Tight budget · unit fill rate</h3>
+      <div class="barrow"><div class="top"><span>Days-of-supply baseline</span><strong>78.27%</strong></div><div class="track"><div class="fill baseline" style="width:78.27%"></div></div></div>
+      <div class="barrow"><div class="top"><span>Proposed priority</span><strong>79.20%</strong></div><div class="track"><div class="fill" style="width:79.2%"></div></div></div>
+      <small>1 April–30 September 2026 · synthetic demand · identical opening conditions</small>
+    </div></div></section>
+    <section id="tool" class="wrap"><div class="tool-head"><div><h2>Inspect the working decision.</h2><p>Change the budget, supplier timing, or service target. Trace a SKU and download draft Excel or CSV buyer actions. Import templates support your own data.</p></div><a id="demo-link-secondary" class="button" href="#tool">Open demo</a></div>
+      <figure><img class="preview" src="app-preview.svg" alt="Schematic interface preview with a spend allocation, buyer queue, and deferred purchase exposure"><figcaption>Schematic of the prepared synthetic demonstration; the live app has interactive controls and exports.</figcaption></figure>
+    </section>
+    <div id="method" class="method"><div class="wrap method-grid"><div><h2>Inspect the assumptions and code.</h2><p>The repository includes the input contract, movement reconciliation SQL, rolling-origin forecast comparison, deterministic cash allocation, holdout replay, automated tests, and buyer exports.</p><div class="stack">Python 3.12 · DuckDB SQL · Streamlit · Excel / CSV · Pytest</div></div><div><h3>What this evidence means</h3><p>The allocator is an explainable heuristic, not a global mathematical optimum. Safety stock uses an estimated service target; achieved fill rate is measured in replay. Average inventory value measures inventory capital, not full working capital.</p><p>No simulated result is represented as realized employer savings.</p></div></div></div>
+  </main>
+  <footer><div class="wrap">Synthetic project for supply-planning portfolio review. Buyer files are draft recommendations.</div></footer>
+  <script>
+    fetch('./site-config.json').then(response => response.json()).then(config => {
+      if (!config.demo_url && ['localhost', '127.0.0.1'].includes(location.hostname)) config.demo_url = 'http://localhost:8501';
+      for (const [id, url] of [['demo-link', config.demo_url], ['demo-link-secondary', config.demo_url], ['repo-link', config.repository_url]]) {
+        const link = document.getElementById(id);
+        if (url) { link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+        else { link.setAttribute('aria-disabled', 'true'); link.title = 'Public deployment is being connected'; }
+      }
+      if (!config.demo_url || !config.repository_url) document.getElementById('link-status').textContent = 'Local demonstration ready · public demo and repository links will appear after deployment';
+    });
+  </script>
+</body>
+</html>
