@@ -339,7 +339,7 @@ def decide(
     review = pd.DataFrame(review_rows, columns=["sku_id", "location", "action", "status", "reason"])
     source_root = Path(__file__).resolve().parents[1]
     source_bytes = b"".join(
-        (source_root / name).read_bytes()
+        (source_root / name).read_bytes().replace(b"\r\n", b"\n")
         for name in (
             "src/config.py",
             "src/forecast.py",
@@ -364,3 +364,4 @@ def decide(
         forecaster.scores,
         pd.DataFrame(timeline_rows),
     )
+
