@@ -1,10 +1,10 @@
 {
   "asof": "2026-09-18",
   "seed": 42,
-  "run_id": "0c01e175c311",
-  "input_fingerprint": "0bb5b55a35a007ec",
-  "budget_usd": 50000.0,
-  "recommended_spend_usd": 49728.0,
+  "run_id": "7160b71eaa50",
+  "input_fingerprint": "e2cc54424ed8234f",
+  "budget_usd": 50000,
+  "recommended_spend_usd": 49728,
   "purchase_lines": 11,
   "deferred_lines": 1,
   "transfer_lines": 3
