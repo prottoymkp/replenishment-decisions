@@ -1,0 +1,7 @@
+scenario,policy,budget_usd,supplier_delay_days,unit_fill_rate,demand_units,fulfilled_units,lost_units,stockout_sku_store_days,purchase_commitments_usd,transfer_operating_cost_usd,average_inventory_value_usd,replay_days,max_monthly_spend_usd
+Base case,baseline,50000.0,0,0.8093,15295,12379,2916,1435,147336.0,8081.25,215466.05,183,41088.0
+Base case,proposed,50000.0,0,0.8093,15295,12379,2916,1435,147336.0,8081.25,215466.05,183,41088.0
+Tight budget,baseline,25000.0,0,0.7827,15295,11972,3323,1645,123870.0,7679.25,213027.11,183,24948.0
+Tight budget,proposed,25000.0,0,0.792,15295,12114,3181,1582,124086.0,7819.5,213178.5,183,24954.0
+Supplier delay,baseline,50000.0,20,0.7655,15295,11709,3586,1709,169146.0,7694.25,209113.82,183,48660.0
+Supplier delay,proposed,50000.0,20,0.7655,15295,11709,3586,1709,169146.0,7694.25,209113.82,183,48660.0
