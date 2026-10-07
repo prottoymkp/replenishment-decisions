@@ -3,8 +3,8 @@
   "seed": 42,
   "run_id": "7160b71eaa50",
   "input_fingerprint": "e2cc54424ed8234f",
-  "budget_usd": 50000,
-  "recommended_spend_usd": 49728,
+  "budget_usd": 50000.0,
+  "recommended_spend_usd": 49728.0,
   "purchase_lines": 11,
   "deferred_lines": 1,
   "transfer_lines": 3

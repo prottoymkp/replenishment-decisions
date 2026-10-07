@@ -357,4 +357,3 @@ def fingerprint(data: dict[str, pd.DataFrame]) -> str:
         digest.update(name.encode())
         digest.update(data[name].to_csv(index=False, lineterminator="\n").encode())
     return digest.hexdigest()[:16]
-

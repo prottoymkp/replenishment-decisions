@@ -364,4 +364,3 @@ def decide(
         forecaster.scores,
         pd.DataFrame(timeline_rows),
     )
-
