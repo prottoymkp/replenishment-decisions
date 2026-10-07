@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.venv/
+data/generated/
+outputs/
+*.duckdb
+*.duckdb.wal
+.agents/
