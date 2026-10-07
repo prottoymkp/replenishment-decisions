@@ -105,7 +105,7 @@
   </main>
   <footer><div class="wrap">Synthetic project for supply-planning portfolio review. Buyer files are draft recommendations.</div></footer>
   <script>
-    fetch('./site-config.json').then(response => response.json()).then(config => {
+    fetch('./site-config.json', { cache: 'no-store' }).then(response => response.json()).then(config => {
       if (!config.demo_url && ['localhost', '127.0.0.1'].includes(location.hostname)) config.demo_url = 'http://localhost:8501';
       for (const [id, url] of [['demo-link', config.demo_url], ['demo-link-secondary', config.demo_url], ['repo-link', config.repository_url]]) {
         const link = document.getElementById(id);
