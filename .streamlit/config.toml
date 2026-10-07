@@ -1,0 +1,13 @@
+[theme]
+primaryColor = "#165A54"
+backgroundColor = "#FAF9F6"
+secondaryBackgroundColor = "#F0F2EF"
+textColor = "#172721"
+borderColor = "#D7DED8"
+dataframeHeaderBackgroundColor = "#E8EDE9"
+baseRadius = "small"
+buttonRadius = "small"
+font = "sans serif"
+
+[server]
+maxUploadSize = 100
